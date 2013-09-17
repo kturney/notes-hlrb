@@ -1,7 +1,7 @@
 # Filesystem Interaction
-Done through the `File` class
-File size is returned in bytes
-`nil` is returned when file size is zero(0)
+- Done through the `File` class
+- File size is returned in bytes
+- `nil` is returned when file size is zero(0)
 ## Reading from a file
 To prevent needing to call close, a block can be passed to `File#open` or `IO#foreach` can be used
 
@@ -39,13 +39,13 @@ end
 ```
 # Threads, Forks, and Processes
 ## Threads
-To create a thread, just pass a code block to the `Thread` class's constructor
+- To create a thread, just pass a code block to the `Thread` class's constructor
 
-```ruby
-mythread = Thread.new() do
-  # some awesome thread logic
-end
-```
-Threads start right after they are created
-Call `mythread.join()` to have your program wait for a thread to complete before exiting. Otherwise, all threads are exited when the main thread exits
+  ```ruby
+  mythread = Thread.new() do
+    # some awesome thread logic
+  end
+  ```
+- Threads start right after they are created
+- Call `mythread.join()` to have your program wait for a thread to complete before exiting. Otherwise, all threads are exited when the main thread exits
 ### Controlling threads
