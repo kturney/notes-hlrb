@@ -12,11 +12,14 @@
 - Can use `URI#parse` to use normal URLs with `Net::HTTP`
 - `Net::FTP` for FTP and `Net::SMTP` for SMTP (go figure)
 - Basicly the Net library has everything you want
+
 # Distributed Ruby
 - Part of the DRb (Distributed Ruby) package
 - All applications consist of a server and clients
 - The server starts a TCP server which exposes objects, accepts connections and responds to actions requested over those connections
+
 ## Server Example
+
 ```ruby
 require 'drb/drb'
 require 'thread'
@@ -41,7 +44,7 @@ puts DRb.uri
 DRb.thread.join
 
 # the server then idles until connected to
-``
+```
 ## Client Example
 
 ```ruby
