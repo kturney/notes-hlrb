@@ -12,4 +12,51 @@
 - Can use `URI#parse` to use normal URLs with `Net::HTTP`
 - `Net::FTP` for FTP and `Net::SMTP` for SMTP (go figure)
 - Basicly the Net library has everything you want
-- 
+# Distributed Ruby
+- Part of the DRb (Distributed Ruby) package
+- All applications consist of a server and clients
+- The server starts a TCP server which exposes objects, accepts connections and responds to actions requested over those connections
+## Server Example
+```ruby
+require 'drb/drb'
+require 'thread'
+
+class SizeService
+  def initialize(filename)
+    @file = filename
+  end
+  
+  def get_space
+    return File.size(@file)
+  end
+end
+
+# start a drb service with the specified URI and expose the indicated object
+DRb.start_service("druby://:9876", SizeService.new('cats.log'))
+
+# print the URI for reference and for your benefit when trying to connect
+puts DRb.uri
+
+# join the server thread to the main thread so the app doesn't exit
+DRb.thread.join
+
+# the server then idles until connected to
+``
+## Client Example
+
+```ruby
+require 'drb/drb'
+
+# make sure the service is started
+Drb.start_service
+
+# bind to the remote object
+remote_obj = DRbObject.new(nil, 'druby://domo:9876')
+
+# use the remote object just like a local object
+puts "Log file usage is #{remote_obj.get_space()} bytes."
+```
+# Databases
+- Access many different database backends through the Ruby's DBI
+- All apps can also use Rails' ORM, ActiveRecord
+- Just have classes extend `ActiveRecord::Base`
